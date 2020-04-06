@@ -19,30 +19,30 @@
     so that range(5,2,-1) produces [5,4,3,2].
 */
 
-
 const range = (start, end, step = null) => {
-    result = [];
-    for (; (start + step) <= (end); start += step) {
-        if (!isNaN(step)) {
-            
-            result.push(start + step);
-        } else {
-            result.push(start);
-        }
-                
+  result = [];
+
+  if (Math.sign(step) === -1) {
+    for (; start >= end; step ? (start += step) : (start += -1)) {
+      result.push(start);
     }
-    return result;
-}
-
-const sum = (numbers) => {
-    let total = 0;
-
-    for (let index = 0; index < numbers.length; index++) {
-        const number = numbers[index];
-        total += number
+  } else {
+    for (; start <= end; step ? (start += step) : (start += 1)) {
+      result.push(start);
     }
+  }
+  return result;
+};
 
-    return total;
-}
+const sum = numbers => {
+  let total = 0;
 
-console.log(range(1,10,2));
+  for (let index = 0; index < numbers.length; index++) {
+    const number = numbers[index];
+    total += number;
+  }
+
+  return total;
+};
+
+console.log(sum(range(1, 10)));
