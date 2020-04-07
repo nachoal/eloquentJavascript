@@ -45,12 +45,13 @@ const prepend = (element, list) => {
 };
 
 const nth = (list, number) => {
-  console.log(list);
+  let result = list;
+
   if (list.value !== number) {
-    nth(list.rest, number);
-  } else {
-    return list;
+    result = nth(list.rest, number);
   }
+
+  return result;
 };
 // TESTS
 
@@ -64,7 +65,9 @@ const obj = { value: 2, rest: { value: 3, rest: { value: 4, rest: null } } };
 
 // // eslint-disable-next-line no-console
 // console.log("arrayToList:", arrayToList([1, 2, 3]));
+
 // // eslint-disable-next-line no-console
 // console.log("ListToArray:", listToArray(obj));
+
 // eslint-disable-next-line no-console
-console.log("nth:", nth(obj, 3));
+console.log("nth:", nth(obj, 4));
