@@ -16,20 +16,19 @@
 
 class GroupIterator {
   constructor(group) {
-    this.x = 0;
+    this.index = 0;
     this.group = group;
   }
 
   next() {
-    if (this.x === this.group[this.group.length - 1])
-      return { value: undefined, done: true };
-
-    let value = {
-      x: this.x,
-      value: this.group[x],
+    const nextValue = {
+      value: this.group.group[this.index],
+      done: this.group.group.length <= this.index,
     };
-    this.x += 1;
-    return { value, done: false };
+
+    this.index += 1;
+
+    return nextValue;
   }
 }
 class Group {
@@ -71,7 +70,7 @@ class Group {
   }
 }
 
-for (let value of Group.from(['a', 'b', 'c'])) {
+for (let value of Group.from(["a", "b", "c"])) {
   console.log(value);
 }
 // → a
